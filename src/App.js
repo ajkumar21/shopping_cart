@@ -2,16 +2,8 @@ import React from 'react';
 import { useState } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {
-  Button,
-  InputGroup,
-  FormControl,
-  Form,
-  ListGroup,
-  Row,
-  Col,
-  Card
-} from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
+import ItemList from './components/itemList';
 
 function App() {
   const [amount, setAmount] = useState({ Oranges: 0, Coke: 0, Beans: 0 });
@@ -26,43 +18,8 @@ function App() {
     <Row>
       <Col>
         <div className='App'>Items</div>
-
-        <div style={{ display: 'flex' }}>
-          {Object.keys(stock).map(name => (
-            <Card key={name} style={{ width: '9rem', display: 'flex' }}>
-              <Card.Body>
-                <Card.Title style={{ textAlign: 'center' }}>{name}</Card.Title>
-                {stock[name].priceCalc === 'byWeight' ? (
-                  <h6>Weight</h6>
-                ) : (
-                  <h6>Quantity</h6>
-                )}
-                <Form>
-                  <InputGroup>
-                    <FormControl
-                      aria-label='Weight'
-                      value={amount[name]}
-                      onChange={e =>
-                        setAmount({ ...amount, [name]: e.target.value })
-                      }
-                    />
-                    {stock[name].priceCalc === 'byWeight' ? (
-                      <InputGroup.Append>
-                        <InputGroup.Text>kg</InputGroup.Text>
-                      </InputGroup.Append>
-                    ) : (
-                      <React.Fragment />
-                    )}
-                  </InputGroup>
-                </Form>
-                <br />
-                <Button onClick={() => console.log('item Added')}>
-                  Add to Cart
-                </Button>
-              </Card.Body>
-            </Card>
-          ))}
-        </div>
+        <br />
+        <ItemList stock={stock} amount={amount} setAmount={setAmount} />
       </Col>
       <Col>
         <div className='App'>Shopping Cart</div>
