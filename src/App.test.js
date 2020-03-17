@@ -2,19 +2,72 @@ import React from 'react';
 import App from './App';
 import { expect } from 'chai';
 import * as enzyme from 'enzyme';
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { calculateCost, calculateSavings } from './utils/utils';
+import { Card } from 'react-bootstrap';
 
 const adapter = new Adapter();
 enzyme.configure({ adapter });
 
-describe('App should render header', () => {
-  it('should render "shopping cart" ', () => {
-    const wrapper = mount(<App />);
+describe('App should render headers', () => {
+  const wrapper = mount(<App />);
+
+  it('should render "Shopping Cart" ', () => {
     expect(
       wrapper.containsMatchingElement(<div className='App'>Shopping Cart</div>)
-    );
+    ).be.true;
+  });
+
+  it('should render "Items" ', () => {
+    expect(wrapper.containsMatchingElement(<div className='App'>Items</div>)).be
+      .true;
+  });
+});
+
+describe('App should render 3 cards', () => {
+  const wrapper = mount(<App />);
+
+  it('should render one card for Oranges', () => {
+    expect(
+      wrapper.containsMatchingElement(
+        <Card key={name} style={{ width: '9rem', display: 'flex' }}>
+          <Card.Body>
+            <Card.Title style={{ textAlign: 'center' }}>Oranges</Card.Title>
+            <h6>Weight</h6>
+            <br />
+          </Card.Body>
+        </Card>
+      )
+    ).be.true;
+  });
+
+  it('should render one card for Coke', () => {
+    expect(
+      wrapper.containsMatchingElement(
+        <Card key={name} style={{ width: '9rem', display: 'flex' }}>
+          <Card.Body>
+            <Card.Title style={{ textAlign: 'center' }}>Coke</Card.Title>
+            <h6>Quantity</h6>
+            <br />
+          </Card.Body>
+        </Card>
+      )
+    ).be.true;
+  });
+
+  it('should render one card for Beans', () => {
+    expect(
+      wrapper.containsMatchingElement(
+        <Card key={name} style={{ width: '9rem', display: 'flex' }}>
+          <Card.Body>
+            <Card.Title style={{ textAlign: 'center' }}>Beans</Card.Title>
+            <h6>Quantity</h6>
+            <br />
+          </Card.Body>
+        </Card>
+      )
+    ).be.true;
   });
 });
 
