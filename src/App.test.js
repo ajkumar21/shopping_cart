@@ -12,7 +12,9 @@ enzyme.configure({ adapter });
 describe('App should render header', () => {
   it('should render "shopping cart" ', () => {
     const wrapper = mount(<App />);
-    expect(wrapper.html()).to.eq('<div class="App">Shopping Cart</div>');
+    expect(
+      wrapper.containsMatchingElement(<div className='App'>Shopping Cart</div>)
+    );
   });
 });
 
