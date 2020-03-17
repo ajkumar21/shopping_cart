@@ -56,6 +56,9 @@ function App() {
                   </InputGroup>
                 </Form>
                 <br />
+                <Button onClick={() => console.log('item Added')}>
+                  Add to Cart
+                </Button>
               </Card.Body>
             </Card>
           ))}

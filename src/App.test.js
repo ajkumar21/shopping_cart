@@ -53,6 +53,7 @@ describe('App should render 3 cards', () => {
               </InputGroup>
             </Form>
             <br />
+            <Button>Add to Cart</Button>
           </Card.Body>
         </Card>
       )
@@ -73,6 +74,7 @@ describe('App should render 3 cards', () => {
               </InputGroup>
             </Form>
             <br />
+            <Button>Add to Cart</Button>
           </Card.Body>
         </Card>
       )
@@ -93,6 +95,7 @@ describe('App should render 3 cards', () => {
               </InputGroup>
             </Form>
             <br />
+            <Button>Add to Cart</Button>
           </Card.Body>
         </Card>
       )
