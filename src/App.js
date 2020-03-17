@@ -37,6 +37,24 @@ function App() {
                 ) : (
                   <h6>Quantity</h6>
                 )}
+                <Form>
+                  <InputGroup>
+                    <FormControl
+                      aria-label='Weight'
+                      value={amount[name]}
+                      onChange={e =>
+                        setAmount({ ...amount, [name]: e.target.value })
+                      }
+                    />
+                    {stock[name].priceCalc === 'byWeight' ? (
+                      <InputGroup.Append>
+                        <InputGroup.Text>kg</InputGroup.Text>
+                      </InputGroup.Append>
+                    ) : (
+                      <React.Fragment />
+                    )}
+                  </InputGroup>
+                </Form>
                 <br />
               </Card.Body>
             </Card>

@@ -5,7 +5,16 @@ import * as enzyme from 'enzyme';
 import { mount, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { calculateCost, calculateSavings } from './utils/utils';
-import { Card } from 'react-bootstrap';
+import {
+  Button,
+  InputGroup,
+  FormControl,
+  Form,
+  ListGroup,
+  Row,
+  Col,
+  Card
+} from 'react-bootstrap';
 
 const adapter = new Adapter();
 enzyme.configure({ adapter });
@@ -35,6 +44,14 @@ describe('App should render 3 cards', () => {
           <Card.Body>
             <Card.Title style={{ textAlign: 'center' }}>Oranges</Card.Title>
             <h6>Weight</h6>
+            <Form>
+              <InputGroup>
+                <FormControl aria-label='Weight' />
+                <InputGroup.Append>
+                  <InputGroup.Text>kg</InputGroup.Text>
+                </InputGroup.Append>
+              </InputGroup>
+            </Form>
             <br />
           </Card.Body>
         </Card>
@@ -49,6 +66,12 @@ describe('App should render 3 cards', () => {
           <Card.Body>
             <Card.Title style={{ textAlign: 'center' }}>Coke</Card.Title>
             <h6>Quantity</h6>
+            <Form>
+              <InputGroup>
+                <FormControl aria-label='Weight' />
+                <React.Fragment />
+              </InputGroup>
+            </Form>
             <br />
           </Card.Body>
         </Card>
@@ -63,6 +86,12 @@ describe('App should render 3 cards', () => {
           <Card.Body>
             <Card.Title style={{ textAlign: 'center' }}>Beans</Card.Title>
             <h6>Quantity</h6>
+            <Form>
+              <InputGroup>
+                <FormControl aria-label='Weight' />
+                <React.Fragment />
+              </InputGroup>
+            </Form>
             <br />
           </Card.Body>
         </Card>
