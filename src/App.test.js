@@ -165,7 +165,7 @@ describe('helper functions', () => {
 describe('Cart should have the items once added', () => {
   const wrapper = mount(<App />);
 
-  it('item should be added to cart once quanityt is changed and add to cart is clicked', () => {
+  it('item should be added to cart once quantity is changed and add to cart is clicked', () => {
     wrapper
       .find('input')
       .first()
@@ -184,8 +184,11 @@ describe('Cart should have the items once added', () => {
               <React.Fragment>kg @ £1.99 per kg</React.Fragment>
             </div>
             <p>£1.99</p>
+            <br />
+            <div>
+              <Button>Edit</Button> <Button variant='danger'>Delete</Button>
+            </div>
           </div>
-          <br />
         </ListGroup.Item>
       )
     ).be.true;
@@ -210,8 +213,11 @@ describe('Cart should have the items once added', () => {
               <React.Fragment>@ £0.70 each</React.Fragment>
             </div>
             <p>£0.70</p>
+            <br />
+            <div>
+              <Button>Edit</Button> <Button variant='danger'>Delete</Button>
+            </div>
           </div>
-          <br />
         </ListGroup.Item>
       )
     ).be.true;
@@ -236,8 +242,11 @@ describe('Cart should have the items once added', () => {
               <React.Fragment>@ £0.50 each</React.Fragment>
             </div>
             <p>£0.50</p>
+            <br />
+            <div>
+              <Button>Edit</Button> <Button variant='danger'>Delete</Button>
+            </div>
           </div>
-          <br />
         </ListGroup.Item>
       )
     ).be.true;

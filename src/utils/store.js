@@ -34,6 +34,34 @@ const cartStore = {
     };
     subject.next(state);
   },
+  editQuantity: name => {
+    state = {
+      ...state,
+      [name]: { ...state[name], edit: true }
+    };
+    subject.next(state);
+  },
+  saveItem: name => {
+    if (parseFloat(state[name].quantity) === 0) {
+      const { [name]: value, ...newState } = state;
+      state = newState;
+    } else {
+      state = {
+        ...state,
+        [name]: {
+          ...state[name],
+          quantity: parseFloat(state[name].quantity),
+          edit: false
+        }
+      };
+    }
+    subject.next(state);
+  },
+  deleteItem: name => {
+    const { [name]: value, ...newState } = state;
+    state = newState;
+    subject.next(state);
+  },
   initialState
 };
 

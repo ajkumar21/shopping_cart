@@ -76,8 +76,29 @@ function App() {
                     2
                   )}
                 </p>
+                <br />
+                {cart[name].edit ? (
+                  <div>
+                    <br />
+                    <br />
+                    <Button onClick={() => cartStore.saveItem(name)}>
+                      Save
+                    </Button>
+                  </div>
+                ) : (
+                  <div>
+                    <Button onClick={() => cartStore.editQuantity(name)}>
+                      Edit
+                    </Button>{' '}
+                    <Button
+                      variant='danger'
+                      onClick={() => cartStore.deleteItem(name)}
+                    >
+                      Delete
+                    </Button>
+                  </div>
+                )}
               </div>
-              <br />
             </ListGroup.Item>
           ))}
         </ListGroup>
