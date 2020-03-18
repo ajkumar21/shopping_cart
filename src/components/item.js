@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, InputGroup, FormControl, Form, Card } from 'react-bootstrap';
 
-const Item = ({ stock, amount, setAmount, name }) => {
+const Item = ({ stock, amount, setAmount, name, addToCart }) => {
   return (
     <Card key={name} style={{ width: '9rem', display: 'flex' }}>
       <Card.Body>
@@ -28,7 +28,14 @@ const Item = ({ stock, amount, setAmount, name }) => {
           </InputGroup>
         </Form>
         <br />
-        <Button onClick={() => console.log('item Added')}>Add to Cart</Button>
+        <Button
+          onClick={() => {
+            addToCart(name, amount, stock[name].price);
+            setAmount({ ...amount, [name]: 0 });
+          }}
+        >
+          Add to Cart
+        </Button>
       </Card.Body>
     </Card>
   );

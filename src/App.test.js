@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import App from './App';
 import { expect } from 'chai';
 import * as enzyme from 'enzyme';
@@ -15,6 +15,8 @@ import {
   Col,
   Card
 } from 'react-bootstrap';
+
+import cartStore from './utils/store';
 
 const adapter = new Adapter();
 enzyme.configure({ adapter });
@@ -157,5 +159,57 @@ describe('helper functions', () => {
     const examplePrice = 0.5;
     const savings = calculateSavings(itemName, exampleQuantity, examplePrice);
     expect(savings).to.eq(0.5);
+  });
+});
+
+describe('Cart should have the items once added', () => {
+  const wrapper = mount(<App />);
+
+  it('item should be added to cart once quanityt is changed and add to cart is clicked', () => {
+    wrapper
+      .find('input')
+      .first()
+      .simulate('change', { target: { value: '1' } });
+    wrapper
+      .find('button')
+      .first()
+      .simulate('click');
+    expect(
+      wrapper.containsMatchingElement(
+        <ListGroup.Item key={name}>Oranges</ListGroup.Item>
+      )
+    ).be.true;
+  });
+
+  it('item should be added to cart once quantity is changed and add to cart is clicked', () => {
+    wrapper
+      .find('input')
+      .at(1)
+      .simulate('change', { target: { value: '1' } });
+    wrapper
+      .find('button')
+      .at(1)
+      .simulate('click');
+    expect(
+      wrapper.containsMatchingElement(
+        <ListGroup.Item key={name}>Coke</ListGroup.Item>
+      )
+    ).be.true;
+  });
+
+  it('item should be added to cart once quantity is changed and add to cart is clicked', () => {
+    wrapper
+      .find('input')
+      .at(2)
+      .simulate('change', { target: { value: '1' } });
+    wrapper
+      .find('button')
+      .at(2)
+      .simulate('click');
+    expect(
+      wrapper.containsMatchingElement(
+        <ListGroup.Item key={name}>Beans</ListGroup.Item>
+      )
+    ).be.true;
   });
 });
