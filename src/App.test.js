@@ -176,7 +176,17 @@ describe('Cart should have the items once added', () => {
       .simulate('click');
     expect(
       wrapper.containsMatchingElement(
-        <ListGroup.Item key={name}>Oranges</ListGroup.Item>
+        <ListGroup.Item key={name}>
+          Oranges
+          <div>
+            <div>
+              <React.Fragment>1</React.Fragment>
+              <React.Fragment>kg @ £1.99 per kg</React.Fragment>
+            </div>
+            <p>£1.99</p>
+          </div>
+          <br />
+        </ListGroup.Item>
       )
     ).be.true;
   });
@@ -192,7 +202,17 @@ describe('Cart should have the items once added', () => {
       .simulate('click');
     expect(
       wrapper.containsMatchingElement(
-        <ListGroup.Item key={name}>Coke</ListGroup.Item>
+        <ListGroup.Item key={name}>
+          Coke
+          <div>
+            <div>
+              <React.Fragment>1</React.Fragment>
+              <React.Fragment>@ £0.70 each</React.Fragment>
+            </div>
+            <p>£0.70</p>
+          </div>
+          <br />
+        </ListGroup.Item>
       )
     ).be.true;
   });
@@ -208,7 +228,17 @@ describe('Cart should have the items once added', () => {
       .simulate('click');
     expect(
       wrapper.containsMatchingElement(
-        <ListGroup.Item key={name}>Beans</ListGroup.Item>
+        <ListGroup.Item key={name}>
+          Beans
+          <div>
+            <div>
+              <React.Fragment>1</React.Fragment>
+              <React.Fragment>@ £0.50 each</React.Fragment>
+            </div>
+            <p>£0.50</p>
+          </div>
+          <br />
+        </ListGroup.Item>
       )
     ).be.true;
   });

@@ -27,6 +27,13 @@ const cartStore = {
     }
     subject.next(state);
   },
+  updateQuantity: (name, e) => {
+    state = {
+      ...state,
+      [name]: { ...state[name], quantity: e.target.value }
+    };
+    subject.next(state);
+  },
   initialState
 };
 
