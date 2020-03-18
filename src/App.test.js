@@ -4,15 +4,19 @@ import { expect } from 'chai';
 import * as enzyme from 'enzyme';
 import { mount, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import { calculateCost, calculateSavings } from './utils/utils';
+import {
+  calculateCost,
+  calculateSavings,
+  calculateSubtotal,
+  calculateTotal,
+  calculateTotalSavings
+} from './utils/utils';
 import {
   Button,
   InputGroup,
   FormControl,
   Form,
   ListGroup,
-  Row,
-  Col,
   Card
 } from 'react-bootstrap';
 
@@ -105,7 +109,7 @@ describe('App should render 3 cards', () => {
   });
 });
 
-describe('helper functions', () => {
+describe('Helper functions', () => {
   it('should calculate cost', () => {
     const exampleQuantity = 4;
     const examplePrice = 2.0;
@@ -159,6 +163,27 @@ describe('helper functions', () => {
     const examplePrice = 0.5;
     const savings = calculateSavings(itemName, exampleQuantity, examplePrice);
     expect(savings).to.eq(0.5);
+  });
+
+  const exampleCart = {
+    Oranges: { price: 1.99, quantity: 3 },
+    Coke: { price: 0.7, quantity: 2 },
+    Beans: { price: 0.5, quantity: 3 }
+  };
+
+  it('should calculate subtotal', () => {
+    const subtotal = calculateSubtotal(exampleCart);
+    expect(subtotal).to.eq(8.87);
+  });
+
+  it('should calculate total savings', () => {
+    const subtotal = calculateTotalSavings(exampleCart);
+    expect(subtotal).to.eq(0.9);
+  });
+
+  it('should calculate total', () => {
+    const subtotal = calculateTotal(exampleCart);
+    expect(subtotal).to.eq(7.97);
   });
 });
 
