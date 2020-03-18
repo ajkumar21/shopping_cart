@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import App from './App';
 import { expect } from 'chai';
 import * as enzyme from 'enzyme';
-import { mount, shallow } from 'enzyme';
+import { mount, render } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import {
   calculateCost,
@@ -24,90 +24,6 @@ import cartStore from './utils/store';
 
 const adapter = new Adapter();
 enzyme.configure({ adapter });
-
-describe('App should render headers', () => {
-  const wrapper = mount(<App />);
-
-  it('should render "Shopping Cart" ', () => {
-    expect(
-      wrapper.containsMatchingElement(<div className='App'>Shopping Cart</div>)
-    ).be.true;
-  });
-
-  it('should render "Items" ', () => {
-    expect(wrapper.containsMatchingElement(<div className='App'>Items</div>)).be
-      .true;
-  });
-});
-
-describe('App should render 3 cards', () => {
-  const wrapper = mount(<App />);
-
-  it('should render one card for Oranges', () => {
-    expect(
-      wrapper.containsMatchingElement(
-        <Card key={name} style={{ width: '9rem', display: 'flex' }}>
-          <Card.Body>
-            <Card.Title style={{ textAlign: 'center' }}>Oranges</Card.Title>
-            <h6>Weight</h6>
-            <Form>
-              <InputGroup>
-                <FormControl aria-label='Weight' />
-                <InputGroup.Append>
-                  <InputGroup.Text>kg</InputGroup.Text>
-                </InputGroup.Append>
-              </InputGroup>
-            </Form>
-            <br />
-            <Button>Add to Cart</Button>
-          </Card.Body>
-        </Card>
-      )
-    ).be.true;
-  });
-
-  it('should render one card for Coke', () => {
-    expect(
-      wrapper.containsMatchingElement(
-        <Card key={name} style={{ width: '9rem', display: 'flex' }}>
-          <Card.Body>
-            <Card.Title style={{ textAlign: 'center' }}>Coke</Card.Title>
-            <h6>Quantity</h6>
-            <Form>
-              <InputGroup>
-                <FormControl aria-label='Weight' />
-                <React.Fragment />
-              </InputGroup>
-            </Form>
-            <br />
-            <Button>Add to Cart</Button>
-          </Card.Body>
-        </Card>
-      )
-    ).be.true;
-  });
-
-  it('should render one card for Beans', () => {
-    expect(
-      wrapper.containsMatchingElement(
-        <Card key={name} style={{ width: '9rem', display: 'flex' }}>
-          <Card.Body>
-            <Card.Title style={{ textAlign: 'center' }}>Beans</Card.Title>
-            <h6>Quantity</h6>
-            <Form>
-              <InputGroup>
-                <FormControl aria-label='Weight' />
-                <React.Fragment />
-              </InputGroup>
-            </Form>
-            <br />
-            <Button>Add to Cart</Button>
-          </Card.Body>
-        </Card>
-      )
-    ).be.true;
-  });
-});
 
 describe('Helper functions', () => {
   it('should calculate cost', () => {
@@ -187,10 +103,91 @@ describe('Helper functions', () => {
   });
 });
 
-describe('Cart should have the items once added', () => {
+describe('App should render headers', () => {
+  const wrapper = render(<App />);
+  it('should render "Shopping Cart" ', () => {
+    expect(wrapper.html().includes('<div class="App">Shopping Cart</div>')).be
+      .true;
+  });
+
+  it('should render "Items" ', () => {
+    expect(wrapper.html().includes('<div class="App">Items</div>')).be.true;
+  });
+});
+
+describe('Items', () => {
   const wrapper = mount(<App />);
 
-  it('item should be added to cart once quantity is changed and add to cart is clicked', () => {
+  it('should render one card for Oranges', () => {
+    expect(
+      wrapper.containsMatchingElement(
+        <Card key={name} style={{ width: '9rem', display: 'flex' }}>
+          <Card.Body>
+            <Card.Title style={{ textAlign: 'center' }}>Oranges</Card.Title>
+            <h6>Weight</h6>
+            <Form>
+              <InputGroup>
+                <FormControl aria-label='Weight' />
+                <InputGroup.Append>
+                  <InputGroup.Text>kg</InputGroup.Text>
+                </InputGroup.Append>
+              </InputGroup>
+            </Form>
+            <br />
+            <Button>Add to Cart</Button>
+          </Card.Body>
+        </Card>
+      )
+    ).be.true;
+  });
+
+  it('should render one card for Coke', () => {
+    expect(
+      wrapper.containsMatchingElement(
+        <Card key={name} style={{ width: '9rem', display: 'flex' }}>
+          <Card.Body>
+            <Card.Title style={{ textAlign: 'center' }}>Coke</Card.Title>
+            <h6>Quantity</h6>
+            <Form>
+              <InputGroup>
+                <FormControl aria-label='Weight' />
+                <React.Fragment />
+              </InputGroup>
+            </Form>
+            <br />
+            <Button>Add to Cart</Button>
+          </Card.Body>
+        </Card>
+      )
+    ).be.true;
+  });
+
+  it('should render one card for Beans', () => {
+    expect(
+      wrapper.containsMatchingElement(
+        <Card key={name} style={{ width: '9rem', display: 'flex' }}>
+          <Card.Body>
+            <Card.Title style={{ textAlign: 'center' }}>Beans</Card.Title>
+            <h6>Quantity</h6>
+            <Form>
+              <InputGroup>
+                <FormControl aria-label='Weight' />
+                <React.Fragment />
+              </InputGroup>
+            </Form>
+            <br />
+            <Button>Add to Cart</Button>
+          </Card.Body>
+        </Card>
+      )
+    ).be.true;
+  });
+});
+
+describe('Cart', () => {
+  const wrapper = mount(<App />);
+
+  it('should add item to cart once quantity is changed and add to cart is clicked', () => {
     wrapper
       .find('input')
       .first()
@@ -219,7 +216,7 @@ describe('Cart should have the items once added', () => {
     ).be.true;
   });
 
-  it('item should be added to cart once quantity is changed and add to cart is clicked', () => {
+  it('should add item to cart once quantity is changed and add to cart is clicked', () => {
     wrapper
       .find('input')
       .at(1)
@@ -248,7 +245,7 @@ describe('Cart should have the items once added', () => {
     ).be.true;
   });
 
-  it('item should be added to cart once quantity is changed and add to cart is clicked', () => {
+  it('should add item to cart once quantity is changed and add to cart is clicked', () => {
     wrapper
       .find('input')
       .at(2)
@@ -275,5 +272,64 @@ describe('Cart should have the items once added', () => {
         </ListGroup.Item>
       )
     ).be.true;
+  });
+
+  it('should be able to edit an item', () => {
+    wrapper
+      .find('button')
+      .at(5)
+      .simulate('click');
+    wrapper
+      .find('input')
+      .at(3)
+      .simulate('change', { target: { value: '10' } });
+    wrapper
+      .find('button')
+      .at(5)
+      .simulate('click');
+
+    expect(
+      wrapper.containsMatchingElement(
+        <ListGroup.Item key={name}>
+          Coke
+          <div>
+            <div>
+              <React.Fragment>10</React.Fragment>
+              <React.Fragment>@ £0.70 each</React.Fragment>
+            </div>
+            <p>£7.00</p>
+            <br />
+            <div>
+              <Button>Edit</Button> <Button variant='danger'>Delete</Button>
+            </div>
+          </div>
+        </ListGroup.Item>
+      )
+    ).be.true;
+  });
+
+  it('should be able to delete an item', () => {
+    wrapper
+      .find('button')
+      .at(6)
+      .simulate('click');
+    expect(
+      wrapper.containsMatchingElement(
+        <ListGroup.Item key={name}>
+          Coke
+          <div>
+            <div>
+              <React.Fragment>10</React.Fragment>
+              <React.Fragment>@ £0.70 each</React.Fragment>
+            </div>
+            <p>£7.00</p>
+            <br />
+            <div>
+              <Button>Edit</Button> <Button variant='danger'>Delete</Button>
+            </div>
+          </div>
+        </ListGroup.Item>
+      )
+    ).be.false;
   });
 });

@@ -31,7 +31,7 @@ const Item = ({ stock, amount, setAmount, name, addToCart }) => {
         <Button
           onClick={() => {
             addToCart(name, stock[name].price, amount[name]);
-            setAmount({ ...amount, [name]: 0 });
+            setAmount({ ...amount, [name]: '' });
           }}
         >
           Add to Cart
