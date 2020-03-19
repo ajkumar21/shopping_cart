@@ -1,12 +1,12 @@
-import React from 'react';
-import { Button, InputGroup, FormControl, Form, Card } from 'react-bootstrap';
+import React from "react";
+import { Button, InputGroup, FormControl, Form, Card } from "react-bootstrap";
 
-const Item = ({ stock, amount, setAmount, name }) => {
+const Item = ({ stock, amount, setAmount, name, addToCart }) => {
   return (
-    <Card key={name} style={{ width: '9rem', display: 'flex' }}>
-      <Card.Body>
-        <Card.Title style={{ textAlign: 'center' }}>{name}</Card.Title>
-        {stock[name].priceCalc === 'byWeight' ? (
+    <Card key={name} style={{ width: "10rem", display: "flex" }}>
+      <Card.Body style={{ textAlign: "center" }}>
+        <Card.Title>{name}</Card.Title>
+        {stock[name].priceCalc === "byWeight" ? (
           <h6>Weight</h6>
         ) : (
           <h6>Quantity</h6>
@@ -14,11 +14,11 @@ const Item = ({ stock, amount, setAmount, name }) => {
         <Form>
           <InputGroup>
             <FormControl
-              aria-label='Weight'
+              aria-label="Weight"
               value={amount[name]}
               onChange={e => setAmount({ ...amount, [name]: e.target.value })}
             />
-            {stock[name].priceCalc === 'byWeight' ? (
+            {stock[name].priceCalc === "byWeight" ? (
               <InputGroup.Append>
                 <InputGroup.Text>kg</InputGroup.Text>
               </InputGroup.Append>
@@ -28,7 +28,14 @@ const Item = ({ stock, amount, setAmount, name }) => {
           </InputGroup>
         </Form>
         <br />
-        <Button onClick={() => console.log('item Added')}>Add to Cart</Button>
+        <Button
+          onClick={() => {
+            addToCart(name, stock[name].price, amount[name]);
+            setAmount({ ...amount, [name]: "" });
+          }}
+        >
+          Add to Cart
+        </Button>
       </Card.Body>
     </Card>
   );
