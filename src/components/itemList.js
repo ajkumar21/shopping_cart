@@ -1,9 +1,9 @@
-import React from 'react';
-import Item from './item';
+import React from "react";
+import Item from "./item";
 
 const ItemList = ({ stock, amount, setAmount, addToCart }) => {
   return (
-    <div style={{ display: 'flex' }}>
+    <div style={{ display: "flex", justifyContent: "space-evenly" }}>
       {Object.keys(stock).map(name => (
         <Item
           key={name}
