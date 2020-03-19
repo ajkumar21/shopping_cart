@@ -19,7 +19,7 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 
 ### `npm run e2e`
 
-Launches the Cypress test runner in the interactive GUI
+Launches the Cypress test runner in the interactive GUI. Please run 'npm start' first to run the dev server in order to run the tests
 
 ### `npm run build`
 
