@@ -49,7 +49,7 @@ describe("Helper functions", () => {
 
   it("should calculate savings for 3 cokes", () => {
     const itemName = "Coke";
-    const exampleQuantity = 2;
+    const exampleQuantity = 3;
     const examplePrice = 0.7;
     const savings = calculateSavings(itemName, exampleQuantity, examplePrice);
     expect(savings).to.eq(0.4);
@@ -73,7 +73,7 @@ describe("Helper functions", () => {
 
   it("should calculate savings for 4 cans of beans", () => {
     const itemName = "Beans";
-    const exampleQuantity = 3;
+    const exampleQuantity = 4;
     const examplePrice = 0.5;
     const savings = calculateSavings(itemName, exampleQuantity, examplePrice);
     expect(savings).to.eq(0.5);
